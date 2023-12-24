@@ -18,8 +18,22 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from '@ioc:Adonis/Core/Route';
+
+
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  return view.render('welcome');
+});
+
+Route.on("/form").render("form.view");
+
+
+Route.post("/form", ({ response }) => {
+  // const { email, password } = request.body();
+  return response.redirect("/form")
+});
+
+Route.patch("/form/:id", ({ params }) => {
+  return (params);
 })
