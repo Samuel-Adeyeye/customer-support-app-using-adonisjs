@@ -8,5 +8,12 @@
 </head>
 <body>
   <h1>Support request form</h1>
+
+  {{-- loop over all requests --}}
+
+  @each(request in requests)
+  <h3>{{request.Support_Request_Title}}</h3>
+
+  @endeach
 </body>
 </html>

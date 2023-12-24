@@ -19,6 +19,7 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route';
+import Database from '@ioc:Adonis/Lucid/Database';
 
 
 
@@ -26,14 +27,37 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome');
 });
 
-Route.on("/form").render("form.view");
+Route.get("/form", async ({ view }) => {
+
+  //fetch data from db
+  const requests = await Database.from('requests').select("*");
+  return view.render("form/view", { requests });
+}).as("form_view");
+
+
 
 
 Route.post("/form", ({ response }) => {
   // const { email, password } = request.body();
   return response.redirect("/form")
-});
+}).as("form_create")
+
 
 Route.patch("/form/:id", ({ params }) => {
   return (params);
 })
+.where('id', {
+  match: /^[0-9]+$/,
+  cast: (id) => Number(id),
+})
+  .as("form_update");
+
+
+  Route.delete("/form/:id", ({ params }) => {
+    return (params);
+  })
+  .where('id', {
+    match: /^[0-9]+$/,
+    cast: (id) => Number(id),
+  })
+    .as("form_delete");
