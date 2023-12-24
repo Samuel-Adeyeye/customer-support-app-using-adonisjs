@@ -19,7 +19,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route';
-import Database from '@ioc:Adonis/Lucid/Database';
 
 
 
@@ -27,14 +26,7 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome');
 });
 
-Route.get("/form", async ({ view }) => {
-
-  //fetch data from db
-  const requests = await Database.from('requests').select("*");
-  return view.render("form/view", { requests });
-}).as("form_view");
-
-
+Route.get("/form", "RequestsController.view").as("form_view");
 
 
 Route.post("/form", ({ response }) => {
