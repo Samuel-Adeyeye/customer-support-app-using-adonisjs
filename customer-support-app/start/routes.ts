@@ -36,7 +36,7 @@ Route.post("/form", ({ request }) => {
   // return view.render('form/create');
   return request.body();
 
-}).as("request_create");
+}).as("request_file");
 
 
 Route.patch("/form/:id", ({ params }) => {
