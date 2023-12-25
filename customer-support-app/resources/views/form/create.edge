@@ -11,8 +11,17 @@
   <form action="{{route('request_file')}}" method="POST">
     {{ csrfField()}}
     <input type="text" name="Support_Request_Title" placeholder="Request Title">
+    @if(flashMessages.has('errors.Support_Request_Title'))
+    <p> {{flashMessages.get('errors.Support_Request_Title')}} </p>
+    @end
     <input type="file" name="File_Upload" id="">
+    @if(flashMessages.has('errors.File_Upload'))
+    <p>{{flashMessages.get('errors.File_Upload')}}</p>
+    @end
     <textarea name="Support_Request_Description" id="" cols="30" rows="10" placeholder="Request Description"></textarea>
+    @if(flashMessages.has('errors.Support_Request_Description'))
+    <p> {{flashMessages.get('errors.Support_Request_Description')}} </p>
+    @end
     <button type="submit">Create Request</button>
 
   </form>

@@ -27,16 +27,8 @@ Route.get('/', async ({ view }) => {
 });
 
 Route.get("/form", "RequestsController.view").as("form_view");
-
 Route.get("/form/create", "RequestsController.create").as('form_create');
-
-Route.post("/form", ({ request }) => {
-  // const { email, password } = request.body();
-  // return response.redirect("/form")
-  // return view.render('form/create');
-  return request.body();
-
-}).as("request_file");
+Route.post("/form", "RequestsController.file").as("request_file");
 
 
 Route.patch("/form/:id", ({ params }) => {
